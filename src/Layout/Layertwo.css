@@ -231,6 +231,14 @@ main {
   border-radius: 5px;
   font-size: 2rem;
 }
+.card {
+  background: #d1ecf1;
+  color: #000000;
+  text-align: center;
+  padding: 25px;
+  border-radius: 5px;
+  font-size: 2rem;
+}
 .charts h1 {
   font-size: 0.8rem;
 }

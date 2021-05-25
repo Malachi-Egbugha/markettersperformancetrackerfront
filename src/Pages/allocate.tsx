@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Layouttwo from "../../Layout/Layertwo";
-import FileUpload from "../../Component/Fileupload"
+import Layouttwo from "../Layout/Layertwo"
+import FileUpload from "../Component/Fileupload"
 
 const Allocate = () => {
   

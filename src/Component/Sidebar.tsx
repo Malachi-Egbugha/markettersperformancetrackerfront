@@ -47,7 +47,7 @@ const Sidebar = () => {
         >
          <i className="fab fa-acquisitions-incorporated"></i>
 
-          <Link to="/allocate">Allocate Marketters</Link>
+          <Link to="/allocate">Upload Data</Link>
               </div>
               
               {/**this section handles routing for Complain management*/}
@@ -63,7 +63,7 @@ const Sidebar = () => {
         >
    <i className="fas fa-bullseye"></i>
 
-          <Link to="/manageallocations">Manage Allocations</Link>
+          <Link to="/manageallocations">Performance Summary</Link>
               </div>
                 {/**this section handles routing for Users*/}
                 <h2>Manage Users</h2>

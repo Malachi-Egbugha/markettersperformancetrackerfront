@@ -1,6 +1,7 @@
 import React from "react";
-import { Link,RouteComponentProps, withRouter } from "react-router-dom";
+import { Link,RouteComponentProps, withRouter} from "react-router-dom";
 import { isActive } from "../auth";
+import {signout} from "../Api/apicall";
 import { History } from 'history';
 interface IProps extends RouteComponentProps{
     history: History;
@@ -12,22 +13,32 @@ const Navbar1 = ({ history }: IProps) => {
     var sidebar:any = document.getElementById("sidebar");
     sidebar.classList.add("sidebar_responsive");
   };
-
+ const signoutnow =async() => {
+   await signout();
+   history.push("/")
+  };
   return (
     <nav className="navbar">
       <div className="nav_icon" onClick={toggleSidebar}>
         <i className="fa fa-bars"></i>
       </div>
       <div className="navbar__left">
-        <Link to="/">DASHBOARD</Link>
+     
            
-        
+        <span
+            onClick={() => signoutnow()}
+            className="nav-link"
+            style={{ cursor: "pointer", color: "red" }}
+          >
+            <i className="fa fa-power-off"></i>
+            Log out
+          </span>
         
       
        
       </div>
       <div>
-         <h2 className="font-bold" >MARKETTERS PERFORMANCE TRACKER</h2>
+         <h2 className="font-bold" >MARKETERS PERFORMANCE TRACKER</h2>
       </div>
       <div className="navbar__right">
     

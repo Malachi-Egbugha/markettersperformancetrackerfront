@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Layouttwo from "../../Layout/Layertwo";
-import { getAllocations } from "../../Api/apicall";
-import Displayperformance from '../../Component/Displayperformance';
-import Pagination from '../../Component/Pagination';
+import Layouttwo from "../Layout/Layertwo";
+import { getAllocations } from "../Api/apicall";
+import Displayperformance from '../Component/Displayperformance';
+import Pagination from '../Component/Pagination';
 
 const Manageallocations = () => {
    const [currentPage, setCurrentPage] = useState<number>(1);
@@ -43,7 +43,7 @@ useEffect(() => {
 
         <hr className="main__cards" />
         <Displayperformance
-          allocations={currentAllocation} />
+          allocations={currentAllocation} indexOfFirstPost={indexOfFirstPost} />
         <Pagination postsPerpage={postsPerpage} totalPost={displayAllocations.length} paginate={paginate} currentPage={currentPage} />
         
         

@@ -1,14 +1,22 @@
+body {
+  font-family: "Alegreya Sans", sans-serif;
+  box-sizing: border-box;
+}
+.text-primary-p {
+  color: #000000;
+  font-size: 14px;
+  font-family: "Catamaran", sans-serif;
+}
+
 .loginbanner {
   min-height: 94vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 .outerdiv {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.548), #141314a2),
-    url(../../assets/images/banner.jpg);
+  background-color: #000000;
   background-size: cover;
   background-position: center;
   min-height: 5vh;
@@ -20,7 +28,7 @@
   color: #000;
 }
 .card-header {
-  background-color: #5d5753;
+  background-color: #265acc;
   color: #fff;
   font-weight: 600;
 }

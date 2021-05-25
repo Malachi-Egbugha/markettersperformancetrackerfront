@@ -13,7 +13,7 @@ const Chart = ({data,labels}:ChartProps) => {
                 label:'Population',
                 data:data,
                 backgroundColor:
-                    ['rgb(209,236,241,1)',
+                    [   'rgb(209,236,241,1)',
                         'rgb(210,249,238,1)',
                         'rgb(214,216,217,1)',
                         'rgb(253,220,223,1)',

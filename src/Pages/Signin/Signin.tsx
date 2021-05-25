@@ -2,16 +2,56 @@ import { Redirect } from "react-router-dom";
 import Layoutone from "../../Layout/Layoutone";
 //import { GoogleLogin } from 'react-google-login';
 import React, { useState } from "react";
-import { login } from '../../Api/apicall';
+import { authenticate } from "../../auth";
+import { signin } from '../../Api/apicall';
 import "./Signin.css";
 
 const Signin = () => {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    error: "",
+    loading: false,
+    redirectToReferrer: false,
+  });
+  const {
+    email,
+    password,
+    error,
+    loading,
+    redirectToReferrer,
+  } = values;
+
+  //handle change input
+  const handleChange = (name:string) => (event:React.ChangeEvent<any>) => {
+    setValues({ ...values, error: "", [name]: event.target.value });
+  };
+   //handle form submission
+  const clickSubmit = async (event: React.ChangeEvent<any>) => {
+    console.log(error);
+    event.preventDefault();
+    //set loading to true
+    setValues({ ...values, error: "", loading: true });
+    //access sign in api
+    let signdata = await signin({ email, password });
+    if (signdata.error) {
+      setValues({ ...values, error: signdata.error, loading: false });
+    } else {
+      authenticate(signdata, () => {
+        setValues({ ...values, redirectToReferrer: true });
+      });
+    }
+  };
+
+ 
+  
+/*
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [token, setToken] = useState("");
 
-  /*
+  
   const responseGoogle = async (response) => {
   
   await  setName(response.profileObj.name);
@@ -29,44 +69,68 @@ const Signin = () => {
   const signUpForm = () => (
     <form>
       <div className="form-group">
-        <label className="text-mute">Email:</label>
+        <label className="text-mute text-primary-p">Email:</label>
         <input
-          value=""
-          
+          value={email}
+          onChange={handleChange("email")}
           type="email"
           className="form-control"
         />
       </div>
       <div className="form-group">
-        <label className="text-mute">Password:</label>
+        <label className="text-mute text-primary-p">Password:</label>
         <input
-          value=""
-         
+          onChange={handleChange("password")}
+          value={password}
           type="password"
           className="form-control"
         />
       </div>
       <button
         type="submit"
+         onClick={clickSubmit}
         className="btn btn-primary"
-        style={{ backgroundColor: "#080A22" }}
+        style={{ backgroundColor: "#265acc" }}
       >
         Submit
       </button>
       
     </form>
   );
-  
-
+   //show loading
+  const showLoading = () =>
+    loading && (
+      <div className="spinning">
+        <div></div>
+        <div></div>
+      </div>
+    );
+//error div
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+  // redirect user to dashboard if referer is true
+  const redirectUser = () => {
+    if (redirectToReferrer) {
+      return <Redirect to="/dashboard" />;
+    }
+  };
   return (
     <Layoutone className="outerdiv">
       <div className="loginbanner">
         <div className="card">
-          <div className="card-header" style={{ backgroundColor: "#080A22" }}>
+          <div className="card-header" style={{ backgroundColor: "#265acc" }}>
             Login
           </div>
           <div className="card-body">
-           
+            {showError()}
+            {showLoading()}
+            {redirectUser()}
             {signUpForm()}
             {
               /*
