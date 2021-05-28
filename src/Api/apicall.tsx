@@ -1,4 +1,3 @@
-import React from 'react';
 import { LOCAL } from "./apiconfig";
 type Props = {
   
@@ -143,3 +142,61 @@ export const stats= async () => {
     console.log(err);
   }
 };
+
+//find a user
+export const finduser = async (id:any) => {
+  const { token } = JSON.parse(localStorage.getItem("usersign") || '{}');
+
+  try {
+    let finduser = await fetch(`${LOCAL}/user/finduser/${id}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: `Bearer: ${token}`,
+      },
+    });
+    return finduser.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//update user
+export const updatedetail = async (id: any, update: any) => {
+  const headers = new Headers();
+  const { token } = JSON.parse(localStorage.getItem("usersign") || '{}');
+  headers.append("Accept", "application/json");
+  headers.append("Content-Type", "application/json");
+  headers.append("authorization", `Bearer: ${token}`);
+  try {
+    let updateuser = await fetch(`${LOCAL}/user/updatedetail/${id}`, {
+      method: "PUT",
+      headers: headers,
+      body: JSON.stringify(update),
+    });
+    return updateuser.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+//update Email
+export const updateemail = async (id: any, update: any) => {
+  const headers = new Headers();
+  const { token } = JSON.parse(localStorage.getItem("usersign") || '{}');
+  headers.append("Accept", "application/json");
+  headers.append("Content-Type", "application/json");
+  headers.append("authorization", `Bearer: ${token}`);
+  try {
+    let updateuser = await fetch(`${LOCAL}/user/updateemail/${id}`, {
+      method: "PUT",
+      headers: headers,
+      body: JSON.stringify(update),
+    });
+    return updateuser.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+

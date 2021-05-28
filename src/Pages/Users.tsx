@@ -1,12 +1,45 @@
 
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Layouttwo from "../Layout/Layertwo";
-import { adduser,fetchusers,updateUser } from "../Api/apicall";
+import { adduser,fetchusers,updateUser,finduser, signout } from "../Api/apicall";
 import Showsuccess from "../Component/Showsuccess";
 import Displayusers from "../Component/Displayusers";
+import Userform from "../Component/Userform";
+import Pagination from "../Component/Pagination";
+import Editpassword from "../Component/Editpassword";
+import Editemail from "../Component/Editemail";
 
 const Users = () => {
-   const [displayusers, setdisplayusers] = useState([]);
+  const [modalPasswordIsOpen, setModalPasswordIsOpen] = useState(false);
+   const [modalEmailIsOpen, setModalEmailIsOpen] = useState(false);
+  const [edituserinfo, setEditUserInfo] = useState({
+    usertype: "",
+    status: "",
+    _id: "",
+    email: "",
+  });
+  const [displayusers, setdisplayusers] = useState([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [postsPerpage] = useState<number>(1);
+  //Get current posts
+  const indexOfLastPost = currentPage * postsPerpage;
+  const indexOfFirstPost = indexOfLastPost - postsPerpage;
+  const currentUsers = displayusers.slice(indexOfFirstPost, indexOfLastPost);
+   const [values, setValues] = useState({
+    email: "",
+    password: "eedc01",
+     error: "",
+    createUser:"",
+  
+  });
+  const {
+    email,
+    password,
+    error,
+    createUser,
+    
+  } = values;
   const loadUsers = () => {
     fetchusers().then((data) => {
       if (data.error) {
@@ -19,7 +52,16 @@ const Users = () => {
   useEffect(() => {
     loadUsers();
   }, []);
-
+  const changeaccessStatus = async (key: any, usertype: any) => {
+    
+    let updatestatus = await updateUser(key, { usertype });
+    updatestatus.error
+      ?  setValues({ ...values,createUser:"", error: updatestatus.error})
+      : setValues({ ...values, error: "", createUser: "Access Type Changed" });
+    loadUsers();
+   
+    
+  }
  const changeStatus = async (event:any) => {
    let status;
   
@@ -50,23 +92,9 @@ const Users = () => {
       
     loadUsers();
   };
-const [currentPage, setCurrentPage] = useState<number>(1);
-const [postsPerpage] = useState<number>(3);
 
-   const [values, setValues] = useState({
-    email: "",
-    password: "eedc01",
-     error: "",
-    createUser:"",
+
   
-  });
-  const {
-    email,
-    password,
-    error,
-    createUser,
-    
-  } = values;
   //handle change input
   const handleChange = (name:string) => (event:React.ChangeEvent<any>) => {
     setValues({ ...values, error: "", createUser: "", [name]: event.target.value });
@@ -93,30 +121,7 @@ const [postsPerpage] = useState<number>(3);
     loadUsers();
   };
  
-const adduserform = () => (
-   <form>
-        <div className="form-group">
-          <input
-        value={email}
-        onChange={handleChange("email")}
-            type="email"
-            className="form-control"
-          />
-         
-    </div>
-     <button
-        type="submit"
-         onClick={clickSubmit}
-        className="btn btn-primary btn-block mt-4"
-        
-      >
-        Submit
-      </button>
-        
-   
-      </form>
-    
-);
+
 //error div
   const showError = () => (
     <div
@@ -126,7 +131,63 @@ const adduserform = () => (
       {error}
     </div>
   );
-  
+  const paginate = (pageNumber:number) => {
+    //setInfo("");
+    setCurrentPage(pageNumber);
+  };
+   const changeModalstate = async (event:any) => {
+     let { value } = event.currentTarget;
+     //find user
+     
+     
+     
+     let edituser = await finduser(value);
+     
+    if (edituser.error) {
+       setValues({ ...values,createUser:"", error: edituser.error});
+    } else {
+      setEditUserInfo({ ...edituser.users[0] });
+      setModalPasswordIsOpen(true);
+    }
+    
+  };
+   const changeModalemail = async (event:any) => {
+     let { value } = event.currentTarget;
+     //find user
+     
+     
+     
+     let edituser = await finduser(value);
+     
+    if (edituser.error) {
+       setValues({ ...values,createUser:"", error: edituser.error});
+    } else {
+      setEditUserInfo({ ...edituser.users[0] });
+      setModalEmailIsOpen(true);
+    }
+    
+  };
+    let history = useHistory();
+ const signoutnow =async() => {
+   await signout();
+   history.push("/")
+  };
+  const fetchstatus = (info:any) => {
+    info.error
+      ?  setValues({ ...values,createUser:"", error: info.error})
+      :setValues({ ...values, error:"",createUser:"Password  Updated" });
+    setModalPasswordIsOpen(false);
+    signoutnow();
+  };
+   const fetchemailstatus = (info:any) => {
+    info.error
+      ?  setValues({ ...values,createUser:"", error: info.error})
+      :setValues({ ...values, error:"",createUser:"Email  Updated" });
+     setModalEmailIsOpen(false);
+     loadUsers();
+    
+  };
+ 
   return (
     <Layouttwo>
       <div className="main__container">
@@ -144,25 +205,34 @@ const adduserform = () => (
             <div className="charts__left__title">
               <div>
                 <h1 className="text-title">Add a User Email</h1>
+               
               </div>
             </div>
             <div id="apex1">
               {showError()}
               <Showsuccess createUser={createUser} />
-           {adduserform()}
-              
+              <Userform email={email} handleChange={handleChange} clickSubmit={clickSubmit} changeModalstate={ changeModalstate}/>
+              <Editpassword modalPasswordIsOpen={modalPasswordIsOpen}
+                setModalPasswordIsOpen={setModalPasswordIsOpen}
+                edituserinfo={edituserinfo}
+                fetchstatus={fetchstatus} />
+               <Editemail modalEmailIsOpen={modalEmailIsOpen}
+                setModalEmailIsOpen={setModalEmailIsOpen}
+                edituserinfo={edituserinfo}
+                fetchemailstatus={ fetchemailstatus}/>
             </div>
           </div>
           <div className="charts__right">
             <div className="charts__right__title">
               <div>
                 <h1 className="text-title">Manage Users</h1>
+                
               </div>
             </div>
            
               
-            <Displayusers displayusers={displayusers} changeStatus={changeStatus} />
-           
+            <Displayusers changeaccessStatus={changeaccessStatus} displayusers={currentUsers} changeStatus={changeStatus} indexOfFirstPost={indexOfFirstPost} changeModalemail={changeModalemail}  />
+             <Pagination postsPerpage={postsPerpage} totalPost={displayusers.length} paginate={paginate} currentPage={currentPage} />
           </div>
               </div>
            

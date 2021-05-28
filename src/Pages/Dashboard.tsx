@@ -1,6 +1,5 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import Layouttwo from "../Layout/Layertwo";
-import Chart from '../Component/Chart';
 import { stats } from '../Api/apicall';
 import Displayfeedersperf from '../Component/Displayfeedersperf'
 
@@ -14,7 +13,6 @@ const Dashboard = () => {
   const [statistics, setStatistics] = useState({
     totalPerformance: "",
     totalTransformers: "",
-    totalMarketters: "",
     totalFeeders: "",
     totalDistricts: "",
     Districtstats:[],
@@ -23,17 +21,16 @@ const Dashboard = () => {
     Totalpaidpop: "",
     Totalbillpop: "",
     Totalbillamt: 0,
-    Totalpaidamt:0,
+
   });
   const { totalPerformance,
     totalTransformers,
-    totalMarketters,
     totalFeeders,
     totalDistricts,
     Districtstats,
     Tranformerstats,
     Feederstats,
-    Totalpaidpop,Totalbillpop,Totalbillamt,Totalpaidamt} = statistics;
+    Totalpaidpop,Totalbillpop,Totalbillamt} = statistics;
   const [error, setError] = useState<string>('');
  
   //load statistics
@@ -43,7 +40,6 @@ const Dashboard = () => {
       : setStatistics({
         ...statistics, totalPerformance: getstats.totalPerformance,
         totalTransformers: getstats.totalTransformers,
-        totalMarketters: getstats.totalMarketters,
         totalFeeders: getstats.totalFeeders,
         totalDistricts: getstats.totalDistricts,
         Feederstats: getstats.Feederstats,
@@ -52,8 +48,9 @@ const Dashboard = () => {
         Totalpaidpop: getstats.Totalstats[0].totalpaidpop + getstats.Totalstats[1].totalpaidpop,
         Totalbillpop:getstats.Totalstats[0].totalbilledpop + getstats.Totalstats[1].totalbilledpop,
         Totalbillamt: Number(getstats.Totalstats[0].totalbilledamt) + Number(getstats.Totalstats[1].totalbilledamt),
-        Totalpaidamt: Number(getstats.Totalstats[0].totalpaidamt) + Number(getstats.Totalstats[1].totalpaidamt),
+       
       });
+
       
   };
   const setinfo = (setter: any, typedata:string) => {
@@ -67,7 +64,16 @@ const Dashboard = () => {
   useEffect(() => {
     loadStatistics();
    
-  },[]);
+  }, []);
+  //error div
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
   return (
     <Layouttwo>
       <div className="main__container">
@@ -80,6 +86,7 @@ const Dashboard = () => {
         </div>
 
         <hr className="main__cards" />
+        {showError()}
         <div className="charts">
           <div className="charts__left">
             <div className="charts__left__title">
@@ -91,16 +98,17 @@ const Dashboard = () => {
             <div id="apex1">
                <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
                 <h1 className="text-lightblue">Total Billed Amount</h1>
-                <p>{Totalbillamt.toFixed(2) }</p>
+            
+                <p>{Totalbillamt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }</p>
               </div>
              
                <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
                 <h1 className="text-lightblue">Total Billed PoP</h1>
-                <p>{Totalbillpop }</p>
+                <p>{Totalbillpop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
               </div>
                <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
                 <h1 className="text-lightblue">Total Paid Pop</h1>
-                <p>{Totalpaidpop }</p>
+                <p>{Totalpaidpop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
                 </div>
              
            
@@ -116,7 +124,7 @@ const Dashboard = () => {
             
               <div className="card1">
                 <h1 className="text-lightblue">Total Number of Records</h1>
-                <p>{totalPerformance }</p>
+                <p>{totalPerformance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
                 </div>
               
               
@@ -125,14 +133,14 @@ const Dashboard = () => {
 <button onClick={() => setinfo(Districtstats,"DISTRICTS")}>
               <div className="card2">
                 <h1 className="text-lightblue">Total Number of Districts</h1>
-                <p>{ totalDistricts}</p>
+                <p>{ totalDistricts.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
                 </button>
               
              <button onClick={() => setinfo(Feederstats, "FEEDERS")}>
               <div className="card3">
                 <h1  className="text-lightblue">Total Number of Feeders</h1>
-                <p>{ totalFeeders}</p>
+                <p>{ totalFeeders.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
               </button>
              
@@ -141,7 +149,7 @@ const Dashboard = () => {
             <button onClick={() => setinfo(Tranformerstats,"TRANSFORMERS")}>
               <div className="card4">
                 <h1  className="text-lightblue">Total Number of Transformers</h1>
-                <p>{ totalTransformers}</p>
+                <p>{ totalTransformers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
                 </button>
             </div>

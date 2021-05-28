@@ -15,6 +15,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a5aaad;
 }
+html {
+  font-size: 14px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -25,12 +28,12 @@ body {
 }
 .text-primary-p {
   color: #a5aaad;
-  font-size: 14px;
+  font-size: 1rem;
   font-family: "Catamaran", sans-serif;
 }
 .font-bold {
   font-family: "Catamaran", sans-serif;
-  font-size: 35px;
+  font-size: 3rem;
 }
 .text-title {
   font-family: "Caveat", cursive;
@@ -40,7 +43,7 @@ body {
 .text-lightblue {
   color: #000000;
   font-family: "Catamaran", sans-serif;
-  font-size: 35px;
+  font-size: 2.2rem;
 }
 .text-red {
   color: #cc3d38;
@@ -81,7 +84,7 @@ body {
   margin-right: 30px;
   text-decoration: none;
   color: #a5aaad;
-  font-size: 15px;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 .navbar__left .active_link {
@@ -167,18 +170,18 @@ main {
   justify-content: space-between;
 }
 .charts__left__title > div > h1 {
-  font-size: 24px;
+  font-size: 2rem;
   color: #2e4a66;
   margin-bottom: 5px;
 }
 .charts__left__title > div > p {
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700;
   color: #a5aaad;
 }
 .charts__left__title > i {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 1.5rem;
   background: #ffc100;
   border-radius: 200px 0px 200px 200px;
   -moz-border-radius: 200px 0px 200px 200px;
@@ -198,18 +201,18 @@ main {
   justify-content: space-between;
 }
 .charts__right__title > div > h1 {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #2e4a66;
   margin-bottom: 5px;
 }
 .charts__right__title > div > p {
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700;
   color: #a5aaad;
 }
 .charts__right__title > i {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 1.2rem;
   background: #39447a;
   border-radius: 200px 0px 200px 200px;
   -moz-border-radius: 200px 0px 200px 200px;
@@ -286,11 +289,11 @@ main {
   object-fit: contain;
 }
 .sidebar__title > div > h1 {
-  font-size: 18px;
+  font-size: 1.2rem;
   display: inline;
 }
 .sidebar__title > i {
-  font-size: 18px;
+  font-size: 1.2rem;
   display: none;
 }
 .sidebar__title {
@@ -332,7 +335,7 @@ main {
 }
 .sidebar__link > i {
   margin-right: 10px;
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 .sidebar__logout > a {
   margin-top: 20px;
@@ -347,7 +350,7 @@ main {
 }
 .sidebar__logout > i {
   margin-right: 10px;
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 .sidebar_responsive {
   display: inline !important;
@@ -357,6 +360,9 @@ main {
   height: 100%;
 }
 @media only screen and (max-width: 978px) {
+  html {
+    font-size: 10px;
+  }
   .contain {
     grid-template-columns: 1fr;
     grid-template-rows: 0.2fr 3fr;
@@ -379,6 +385,12 @@ main {
   }
 }
 @media only screen and (max-width: 855px) {
+  html {
+    font-size: 8px;
+  }
+  .navbar__right {
+    display: none;
+  }
   .main__cards {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -393,6 +405,12 @@ main {
   }
 }
 @media only screen and (max-width: 480px) {
+  html {
+    font-size: 6px;
+  }
+  .navbar__right {
+    display: none;
+  }
   .navbar__left {
     display: none;
   }

@@ -30,6 +30,15 @@ useEffect(() => {
      loadDsiplayAllocations();
   }, []);
   
+  //error div
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
   return (
     <Layouttwo>
       <div className="main__container">
@@ -42,6 +51,7 @@ useEffect(() => {
         </div>
 
         <hr className="main__cards" />
+        {showError()}
         <Displayperformance
           allocations={currentAllocation} indexOfFirstPost={indexOfFirstPost} />
         <Pagination postsPerpage={postsPerpage} totalPost={displayAllocations.length} paginate={paginate} currentPage={currentPage} />

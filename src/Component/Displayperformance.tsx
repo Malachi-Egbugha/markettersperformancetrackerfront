@@ -46,10 +46,10 @@ const Displayperformance = ({ allocations,indexOfFirstPost }:Props) => {
               <td>{u.billed_pop}</td>
                <td>{u.paid_pop}</td>
                <td>{Math.ceil(u.paid_pop/u.billed_pop*100) +'%'}</td>
-              <td>{(Number(u.billed_amt)).toFixed(2)}</td>
-               <td>{(Number(u.paid_amt)).toFixed(2)}</td>
+              <td>{(Number(u.billed_amt)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+               <td>{(Number(u.paid_amt)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
                  <td>{Math.ceil(Number(u.paid_amt)/Number(u.billed_amt)*100) + '%'}</td>
-               <td>{u.arrears.toFixed(2)}</td>
+               <td>{u.arrears.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
                <td>{u.bill_type}</td>
                <td>{u.MARKETER_NAME}</td>
                <td>{u.STAFF_ID}</td>

@@ -21,9 +21,9 @@ export const authenticate = (data:Props, next:any) => {
   
 };
 
-export const isAdmin = () => {
+export const isSuperadmin = () => {
   let { user } = JSON.parse(localStorage.getItem("usersign") || '{}') ;
-  let activate = user.usertype === "hr" ? true : false;
+  let activate = user.usertype === "superadmin" ? true : false;
   return activate;
 };
 

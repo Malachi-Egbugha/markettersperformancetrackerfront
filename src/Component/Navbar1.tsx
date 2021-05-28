@@ -1,6 +1,5 @@
 import React from "react";
 import { Link,RouteComponentProps, withRouter} from "react-router-dom";
-import { isActive } from "../auth";
 import {signout} from "../Api/apicall";
 import { History } from 'history';
 interface IProps extends RouteComponentProps{
