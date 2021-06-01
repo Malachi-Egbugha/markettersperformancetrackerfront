@@ -16,7 +16,8 @@ body {
   flex-direction: column;
 }
 .outerdiv {
-  background-color: #000000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.548), #141314a2),
+    url(../../assets/images/banner.jpg);
   background-size: cover;
   background-position: center;
   min-height: 5vh;
@@ -31,4 +32,45 @@ body {
   background-color: #265acc;
   color: #fff;
   font-weight: 600;
+}
+
+/* Style the input container */
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Style the form icons */
+.icon {
+  padding: 10px;
+  background: #265acc;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Style the input fields */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid #265acc;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #265acc;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
 }

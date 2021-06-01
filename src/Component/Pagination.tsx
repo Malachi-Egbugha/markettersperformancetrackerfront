@@ -29,7 +29,7 @@ const Pagination = ({ postsPerpage, totalPost, paginate, currentPage }:Props) =>
               href="#"
               className="page-link"
               style={
-                currentPage == number
+                currentPage === number
                   ? {
                       color: "#ffffff",
                       backgroundColor: "#DA251C",

@@ -1,5 +1,4 @@
-import { type } from "os";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Modal from "react-modal";
 import { updateemail } from "../Api/apicall";
 type Props = {

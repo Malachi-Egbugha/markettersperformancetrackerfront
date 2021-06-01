@@ -69,30 +69,37 @@ const Signin = () => {
   const signUpForm = () => (
     <form>
       <div className="form-group">
-        <label className="text-mute text-primary-p">Email:</label>
+        <label className="text-mute text-primary-p" style={{color: "#000000"}}>Email:</label>
+      <div className="input-container">
+        <i className="fa fa-envelope icon"></i>
         <input
+        
           value={email}
           onChange={handleChange("email")}
           type="email"
-          className="form-control"
+         className="input-field"
         />
+        </div>
       </div>
       <div className="form-group">
-        <label className="text-mute text-primary-p">Password:</label>
+        <label className="text-mute text-primary-p" style={{color: "#000000"}}>Password:</label>
+        <div className="input-container">
+          <i className="fa fa-key icon"></i>
         <input
           onChange={handleChange("password")}
           value={password}
           type="password"
-          className="form-control"
+          className="input-field"
         />
+        </div>
       </div>
       <button
         type="submit"
          onClick={clickSubmit}
         className="btn btn-primary"
-        style={{ backgroundColor: "#265acc" }}
+        style={{ backgroundColor: "#265acc",  width: "100%" }}
       >
-        Submit
+        LOGIN
       </button>
       
     </form>
@@ -123,9 +130,9 @@ const Signin = () => {
   return (
     <Layoutone className="outerdiv">
       <div className="loginbanner">
-        <div className="card">
+        <div className="card" style={{ textAlign: "left" }}>
           <div className="card-header" style={{ backgroundColor: "#265acc" }}>
-            Login
+            LOGIN
           </div>
           <div className="card-body">
             {showError()}

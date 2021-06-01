@@ -48,7 +48,7 @@ const Navbar1 = ({ history }: IProps) => {
           <i className="fa fa-clock-o"></i>
         </Link>
         <Link to="#">
-          <img width="30" src="assets/necco.png" alt="" />
+         
         </Link>
       </div>
     </nav>

@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { LOCAL } from "../Api/apiconfig";
 import axios from "axios";
 import Message from './Message';
 import Progress from './Progress';
@@ -21,7 +22,7 @@ const FileUpload = () => {
     const formdata = new FormData();
     formdata.append("file", file);
     try {
-      const res = await axios.post("http://localhost:8080/upload", formdata, {
+      const res = await axios.post(`${LOCAL}/upload`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
         }, onUploadProgress: progressEvent => {
