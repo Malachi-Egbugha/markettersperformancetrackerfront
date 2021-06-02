@@ -4,7 +4,12 @@ type Props = {
   indexOfFirstPost: number;
 }
 
-const Displayperformance = ({ allocations,indexOfFirstPost }:Props) => {
+const Displayperformance = ({ allocations, indexOfFirstPost }: Props) => {
+   const pad = (num:number, size:number)=> {
+      let check:string = "" + num;
+      while (check.length < size) check = "0" + check;
+      return check;
+    }
   return (
     <div>
       {console.log(allocations)}
@@ -52,7 +57,7 @@ const Displayperformance = ({ allocations,indexOfFirstPost }:Props) => {
                <td>{u.arrears.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
                <td>{u.bill_type}</td>
                <td>{u.MARKETER_NAME}</td>
-               <td>{u.STAFF_ID}</td>
+               <td>{pad(u.STAFF_ID,5)}</td>
                <td>{`0${u.marketer_phone}`}</td>
 
             </tr>

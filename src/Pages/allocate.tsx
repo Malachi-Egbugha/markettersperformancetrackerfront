@@ -32,13 +32,35 @@ const Allocate = () => {
             <div className="charts__right__title">
               <div>
                 <h1 className="text-title">Allocate Manually</h1>
+                
               </div>
             </div>
-            <div className="charts__right__cards">
+           
               
-
+  <form>
+        <div className="form-group">
+          <input
+      
+            type="email"
+            className="form-control"
+          />
+          
+         
+    </div>
+     <button
+        type="submit"
+     
+          
+        className="btn btn-primary btn-block mt-4"
+        
+      >
+        Submit
+      </button>
+        
+   
+      </form>
               
-            </div>
+            
           </div>
               </div>
            

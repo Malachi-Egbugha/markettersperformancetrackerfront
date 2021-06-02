@@ -11,25 +11,27 @@ const Dashboard = () => {
     const [intype, setIntype] = useState<any>("");
   
   const [statistics, setStatistics] = useState({
-    totalPerformance: "",
+    totalMarketters: "",
     totalTransformers: "",
     totalFeeders: "",
     totalDistricts: "",
     Districtstats:[],
     Tranformerstats:[],
     Feederstats: [],
+    Marketterstats:[],
     Totalpaidpop: "",
     Totalbillpop: "",
     Totalbillamt: 0,
 
   });
-  const { totalPerformance,
+  const { totalMarketters,
     totalTransformers,
     totalFeeders,
     totalDistricts,
     Districtstats,
     Tranformerstats,
     Feederstats,
+    Marketterstats,
     Totalpaidpop,Totalbillpop,Totalbillamt} = statistics;
   const [error, setError] = useState<string>('');
  
@@ -38,12 +40,13 @@ const Dashboard = () => {
     let getstats = await stats();
     getstats.error ? setError(getstats.error)
       : setStatistics({
-        ...statistics, totalPerformance: getstats.totalPerformance,
+        ...statistics, totalMarketters: getstats.totalMarketters,
         totalTransformers: getstats.totalTransformers,
         totalFeeders: getstats.totalFeeders,
         totalDistricts: getstats.totalDistricts,
         Feederstats: getstats.Feederstats,
-        Districtstats:getstats.Districtstats,
+        Districtstats: getstats.Districtstats,
+        Marketterstats:getstats.Marketterstats,
         Tranformerstats: getstats.Tranformerstats,
         Totalpaidpop: getstats.Totalstats[0].totalpaidpop + getstats.Totalstats[1].totalpaidpop,
         Totalbillpop:getstats.Totalstats[0].totalbilledpop + getstats.Totalstats[1].totalbilledpop,
@@ -121,12 +124,14 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="charts__right__cards">
+              <button onClick={() => setinfo(Marketterstats,"Marketers")}>
             
               <div className="card1">
-                <h1 className="text-lightblue">Total Number of Records</h1>
-                <p>{totalPerformance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
-                </div>
+                <h1 className="text-lightblue">Total Number of MARKETERS</h1>
+                <p>{totalMarketters.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
+              </div>
               
+              </button>
               
                
    

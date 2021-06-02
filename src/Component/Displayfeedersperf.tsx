@@ -51,7 +51,8 @@ const Displayfeedersperf = ({ info,modalIsOpen,
                 <th scope="col"></th>
                  <th  scope="col"></th>
                 <th scope="col">{intype}</th>
-            <th  scope="col">PERFORMANCE</th>
+                <th scope="col">CC</th>
+                <th  scope="col">CE</th>
           
            
             
@@ -69,6 +70,11 @@ const Displayfeedersperf = ({ info,modalIsOpen,
                <td>
                  
                  {Math.ceil(u.totalpaidpop/u.totalbilledpop * 100) + '%'}
+                 
+               </td>
+               <td>
+                 
+                 {Math.ceil(u.totalpaidamt/u.totalbilledamt * 100) + '%'}
                  
                 </td>
             </tr>
