@@ -22,6 +22,7 @@ const Dashboard = () => {
     Totalpaidpop: "",
     Totalbillpop: "",
     Totalbillamt: 0,
+    Totalpaidamt: 0,
 
   });
   const { totalMarketters,
@@ -32,7 +33,7 @@ const Dashboard = () => {
     Tranformerstats,
     Feederstats,
     Marketterstats,
-    Totalpaidpop,Totalbillpop,Totalbillamt} = statistics;
+    Totalpaidpop,Totalbillpop,Totalbillamt,Totalpaidamt} = statistics;
   const [error, setError] = useState<string>('');
  
   //load statistics
@@ -51,7 +52,7 @@ const Dashboard = () => {
         Totalpaidpop: getstats.Totalstats[0].totalpaidpop + getstats.Totalstats[1].totalpaidpop,
         Totalbillpop:getstats.Totalstats[0].totalbilledpop + getstats.Totalstats[1].totalbilledpop,
         Totalbillamt: Number(getstats.Totalstats[0].totalbilledamt) + Number(getstats.Totalstats[1].totalbilledamt),
-       
+        Totalpaidamt: Number(getstats.Totalstats[0].totalpaidamt) + Number(getstats.Totalstats[1].totalpaidamt),
       });
 
       
@@ -104,7 +105,16 @@ const Dashboard = () => {
             
                 <p>{Totalbillamt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }</p>
               </div>
-             
+              <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
+                <h1 className="text-lightblue">Total Paid Amount</h1>
+            
+                <p>{Totalpaidamt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }</p>
+              </div>
+              <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
+                <h1 className="text-lightblue">Total CE</h1>
+            
+                <p>{`${Math.round(Number(Totalpaidamt)/Number(Totalbillamt)*100)}%`}</p>
+              </div>
                <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
                 <h1 className="text-lightblue">Total Billed PoP</h1>
                 <p>{Totalbillpop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
@@ -112,7 +122,12 @@ const Dashboard = () => {
                <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
                 <h1 className="text-lightblue">Total Paid Pop</h1>
                 <p>{Totalpaidpop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
-                </div>
+              </div>
+               <div className="card4" style={{padding: "2px",backgroundColor:"#fff"}}>
+                <h1 className="text-lightblue">Total CC</h1>
+            
+                <p>{`${Math.round(Number(Totalpaidpop)/Number(Totalbillpop)*100)}%`}</p>
+              </div>
              
            
             </div>

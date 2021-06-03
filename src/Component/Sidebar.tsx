@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { isActive } from "../auth";
+import { isActive,isSuperadmin,isAdmin,isNormal } from "../auth";
 import logo from "../assets/images/logo.png";
 
 const Sidebar = () => {
@@ -39,6 +39,7 @@ const Sidebar = () => {
 {/**this handles the account management section including profile */}
         <h2>ALLOCATION</h2>
         <div
+          style={isSuperadmin() || isAdmin() ? { display: "block" } : { display: "none" }}
           className={
             isActive(history, "/allocate")
               ? "sidebar__link active_menu_link"
@@ -55,6 +56,7 @@ const Sidebar = () => {
             
        
         <div
+           style={isSuperadmin() || isAdmin() || isNormal()? { display: "block" } : { display: "none" }}
           className={
             isActive(history, "/manageallocations")
               ? "sidebar__link active_menu_link"
@@ -66,7 +68,7 @@ const Sidebar = () => {
           <Link to="/manageallocations">Performance Summary</Link>
               </div>
                 {/**this section handles routing for Users*/}
-                <h2>Manage Users</h2>
+                <h2  style={isSuperadmin() || isAdmin() ? { display: "block" } : { display: "none" }}>Manage Users</h2>
        
               
             
@@ -74,6 +76,7 @@ const Sidebar = () => {
             
        
         <div
+           style={isSuperadmin() || isAdmin()? { display: "block" } : { display: "none" }}
           className={
             isActive(history, "/users")
               ? "sidebar__link active_menu_link"
