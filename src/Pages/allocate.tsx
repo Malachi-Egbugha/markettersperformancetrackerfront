@@ -37,16 +37,128 @@ const Allocate = () => {
             </div>
            
               
-  <form>
-        <div className="form-group">
+            <form>
+                <div className="row">
+        <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label>MARKETER NAME:</label>
           <input
       
-            type="email"
+            type="text"
             className="form-control"
           />
           
          
-    </div>
+                </div>
+                </div>
+                 <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label>STAFF ID:</label>
+          <input
+      
+            type="text"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+                 <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label> Marketer Phone:</label>
+          <input
+      
+            type="phone"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+                 <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label>Bill Type:</label>
+            
+            <select
+              
+              className="form-control"
+           
+              required
+            >
+              <option>Please Select</option>
+              <option value="NMD Meter Reading">NMD Meter Reading</option>
+                      <option value="STORED_AVG">STORED_AVG</option>
+                      <option value="DT Meter Reading">DT Meter Reading</option>
+                      <option value="Unmetered">Unmetered</option>
+                      <option value="Metered Bulk Reading">Metered Bulk Reading</option>
+                      <option value="MD Meter Reading">MD Meter Reading</option>
+                      <option value="CAP Fix">CAP Fix</option>
+                      
+            </select>
+          </div>
+        </div>
+                 <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label> Arrears:</label>
+          <input
+      
+            type="number"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+                  <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label> Paid Amount:</label>
+          <input
+      
+            type="number"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+                <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label> Billed Amount:</label>
+          <input
+      
+            type="number"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+                 <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label> Paid POP:</label>
+          <input
+      
+            type="number"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+                <div className="input-field col-sm-6 col-lg-4">
+                  <div className="form-group">
+                    <label> Billed POP:</label>
+          <input
+      
+            type="number"
+            className="form-control"
+          />
+          
+         
+                </div>
+                </div>
+
+              </div>
      <button
         type="submit"
      

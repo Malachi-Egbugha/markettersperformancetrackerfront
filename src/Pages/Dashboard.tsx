@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layouttwo from "../Layout/Layertwo";
 import { stats } from '../Api/apicall';
 import Displayfeedersperf from '../Component/Displayfeedersperf'
+import Chart from '../Component/Chart';
 
 const Dashboard = () => {
 
@@ -23,6 +24,7 @@ const Dashboard = () => {
     Totalbillpop: "",
     Totalbillamt: 0,
     Totalpaidamt: 0,
+    Totalarrears:0,
 
   });
   const { totalMarketters,
@@ -33,7 +35,7 @@ const Dashboard = () => {
     Tranformerstats,
     Feederstats,
     Marketterstats,
-    Totalpaidpop,Totalbillpop,Totalbillamt,Totalpaidamt} = statistics;
+    Totalpaidpop,Totalbillpop,Totalbillamt,Totalpaidamt,Totalarrears} = statistics;
   const [error, setError] = useState<string>('');
  
   //load statistics
@@ -53,6 +55,7 @@ const Dashboard = () => {
         Totalbillpop:getstats.Totalstats[0].totalbilledpop + getstats.Totalstats[1].totalbilledpop,
         Totalbillamt: Number(getstats.Totalstats[0].totalbilledamt) + Number(getstats.Totalstats[1].totalbilledamt),
         Totalpaidamt: Number(getstats.Totalstats[0].totalpaidamt) + Number(getstats.Totalstats[1].totalpaidamt),
+        Totalarrears: Number(getstats.Totalstats[0].totalarrears) + Number(getstats.Totalstats[1].totalarrears),
       });
 
       
@@ -128,10 +131,12 @@ const Dashboard = () => {
             
                 <p>{`${Math.round(Number(Totalpaidpop)/Number(Totalbillpop)*100)}%`}</p>
               </div>
+              
              
            
             </div>
           </div>
+          
           <div className="charts__right">
             <div className="charts__right__title">
               <div>
@@ -139,9 +144,9 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="charts__right__cards">
-              <button onClick={() => setinfo(Marketterstats,"Marketers")}>
+              <button onClick={() => setinfo(Marketterstats,"MARKETERS")}>
             
-              <div className="card1">
+              <div className="card1" style={{padding: "60px"}}>
                 <h1 className="text-lightblue">Total Number of MARKETERS</h1>
                 <p>{totalMarketters.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</p>
               </div>
@@ -150,15 +155,15 @@ const Dashboard = () => {
               
                
    
-<button onClick={() => setinfo(Districtstats,"DISTRICTS")}>
-              <div className="card2">
+            <button onClick={() => setinfo(Districtstats,"DISTRICTS")}>
+              <div className="card2" style={{padding: "60px"}}>
                 <h1 className="text-lightblue">Total Number of Districts</h1>
                 <p>{ totalDistricts.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
                 </button>
               
              <button onClick={() => setinfo(Feederstats, "FEEDERS")}>
-              <div className="card3">
+              <div className="card3" style={{padding: "60px"}}>
                 <h1  className="text-lightblue">Total Number of Feeders</h1>
                 <p>{ totalFeeders.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
@@ -167,11 +172,12 @@ const Dashboard = () => {
        
      
             <button onClick={() => setinfo(Tranformerstats,"TRANSFORMERS")}>
-              <div className="card4">
+              <div className="card4" style={{padding: "60px"}}>
                 <h1  className="text-lightblue">Total Number of Transformers</h1>
                 <p>{ totalTransformers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
-                </button>
+              </button>
+               
             </div>
           </div>
               </div>

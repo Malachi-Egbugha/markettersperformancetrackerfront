@@ -9,6 +9,7 @@ import Userform from "../Component/Userform";
 import Pagination from "../Component/Pagination";
 import Editpassword from "../Component/Editpassword";
 import Editemail from "../Component/Editemail";
+import { isSuperadmin,isAdmin } from "../auth";
 
 const Users = () => {
   const [modalPasswordIsOpen, setModalPasswordIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const Users = () => {
   });
   const [displayusers, setdisplayusers] = useState([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [postsPerpage] = useState<number>(1);
+  const [postsPerpage] = useState<number>(20);
   //Get current posts
   const indexOfLastPost = currentPage * postsPerpage;
   const indexOfFirstPost = indexOfLastPost - postsPerpage;
@@ -204,7 +205,7 @@ const Users = () => {
           <div className="charts__left">
             <div className="charts__left__title">
               <div>
-                <h1 className="text-title">Add a User Email</h1>
+                <h1 className="text-title" style={isSuperadmin() || isAdmin() ? {display:''}:{display:'none'}}>Add a User Email</h1>
                
               </div>
             </div>
@@ -225,7 +226,7 @@ const Users = () => {
           <div className="charts__right">
             <div className="charts__right__title">
               <div>
-                <h1 className="text-title">Manage Users</h1>
+                <h1 className="text-title" style={isSuperadmin()?{display:''}:{display:'none'}}>Manage Users</h1>
                 
               </div>
             </div>

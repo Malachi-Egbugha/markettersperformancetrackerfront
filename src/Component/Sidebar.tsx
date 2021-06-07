@@ -68,7 +68,7 @@ const Sidebar = () => {
           <Link to="/manageallocations">Performance Summary</Link>
               </div>
                 {/**this section handles routing for Users*/}
-                <h2  style={isSuperadmin() || isAdmin() ? { display: "block" } : { display: "none" }}>Manage Users</h2>
+                <h2>Manage Users</h2>
        
               
             
@@ -76,7 +76,7 @@ const Sidebar = () => {
             
        
         <div
-           style={isSuperadmin() || isAdmin()? { display: "block" } : { display: "none" }}
+           
           className={
             isActive(history, "/users")
               ? "sidebar__link active_menu_link"

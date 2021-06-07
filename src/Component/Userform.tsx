@@ -1,4 +1,5 @@
-import React,{Fragment} from 'react';
+import React, { Fragment } from 'react';
+import { isSuperadmin,isAdmin } from "../auth";
 type Props = {
     email: any;
     handleChange: any;
@@ -9,8 +10,8 @@ type Props = {
 const {user} =JSON.parse(localStorage.getItem("usersign") || '{}') 
 const Userform = ({ email, handleChange, clickSubmit,changeModalstate }:Props) => {
     const adduserform = () => (
-   <form>
-        <div className="form-group">
+   <form style={isSuperadmin() || isAdmin() ? {display:''}:{display:'none'}}>
+        <div className="form-group" >
           <input
         value={email}
         onChange={handleChange("email")}

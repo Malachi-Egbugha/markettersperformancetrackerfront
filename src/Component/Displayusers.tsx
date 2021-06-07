@@ -49,7 +49,7 @@ const Displayusers = ({ displayusers,changeStatus,changeaccessStatus,indexOfFirs
         </thead>
         <tbody>
            {displayusers.map((u:any, i:number) => (
-            <tr key={i}>
+            <tr key={i} >
                <td>{indexOfFirstPost=indexOfFirstPost + 1}</td>
                <td>{u.email}</td>
                <td>
@@ -108,6 +108,7 @@ const Displayusers = ({ displayusers,changeStatus,changeaccessStatus,indexOfFirs
                        <option>Please Select</option>
                        <option  value="superadmin">Super Admin</option>
                        <option value="admin">Admin</option>
+                       <option value="normal">Normal</option>
                      </select>
                      <input value={u._id} type="hidden"/>
                    </div>

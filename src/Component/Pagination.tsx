@@ -1,4 +1,5 @@
 import React from "react";
+import { isAdmin, isSuperadmin } from "../auth";
 type Props = {
     postsPerpage: number;
     totalPost: number;
@@ -13,7 +14,7 @@ const Pagination = ({ postsPerpage, totalPost, paginate, currentPage }:Props) =>
     pageNumbers.push(i);
   }
   return (
-    <nav id="pagination">
+    <nav id="pagination" style={isSuperadmin() || isAdmin() ? {display:''}:{display:'none'}}>
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li
