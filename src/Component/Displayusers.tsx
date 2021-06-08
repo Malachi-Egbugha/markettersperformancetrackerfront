@@ -108,7 +108,7 @@ const Displayusers = ({ displayusers,changeStatus,changeaccessStatus,indexOfFirs
                        <option>Please Select</option>
                        <option  value="superadmin">Super Admin</option>
                        <option value="admin">Admin</option>
-                       <option value="normal">Normal</option>
+                       <option value="management">Management</option>
                      </select>
                      <input value={u._id} type="hidden"/>
                    </div>

@@ -37,7 +37,7 @@ export const isAdmin = () => {
 //check if is normal user
 export const isNormal = () => {
   let { user } = JSON.parse(localStorage.getItem("usersign") || '{}') ;
-  let activate = user.usertype === "normal" ? true : false;
+  let activate = user.usertype === "management" ? true : false;
    console.log(activate);
   return activate;
 };

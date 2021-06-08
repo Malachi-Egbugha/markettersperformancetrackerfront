@@ -29,7 +29,7 @@ const Users = () => {
   const currentUsers = displayusers.slice(indexOfFirstPost, indexOfLastPost);
    const [values, setValues] = useState({
     email: "",
-    password: "eedc01",//setdefault password
+    password: "changeMe123!",//setdefault password
      error: "",
     createUser:"",
   

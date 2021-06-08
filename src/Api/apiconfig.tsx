@@ -6,5 +6,5 @@ export const SETTINGS = "https://hrbackend-app.herokuapp.com/settings";
 
 //localhost
 
-export const LOCAL = "http://localhost:8080";
+export const LOCAL = "http://localhost:5056";
 
