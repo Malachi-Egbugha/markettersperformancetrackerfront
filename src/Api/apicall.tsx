@@ -16,6 +16,7 @@ export const getAllocations = async () => {
   headers.append("Accept", "application/json");
   headers.append("Content-Type", "application/json");
   headers.append("authorization", `Bearer: ${token}`);
+
   
   try {
     let fetallocations = await fetch(`${LOCAL}/read`, {
@@ -30,13 +31,15 @@ export const getAllocations = async () => {
 };
 
 //sigin api
-export const signin = async (user:Props) => {
+export const signin = async (user: Props) => {
+  const headers = new Headers();
+ 
+  headers.append("Accept", "application/json");
+  headers.append("Content-Type", "application/json");
+
   return fetch(`${LOCAL}/api/signin`, {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: headers,
     body: JSON.stringify(user),
   })
     .then((response) => {
@@ -92,6 +95,7 @@ export const fetchusers = async () => {
   headers.append("Accept", "application/json");
   headers.append("Content-Type", "application/json");
   headers.append("authorization", `Bearer: ${token}`);
+ 
   return fetch(`${LOCAL}/user/read`, {
     method: "POST",
     headers: headers,
@@ -113,6 +117,7 @@ export const updateUser = async (id: any, update: any) => {
   headers.append("Accept", "application/json");
   headers.append("Content-Type", "application/json");
   headers.append("authorization", `Bearer: ${token}`);
+
   try {
     let updateuser = await fetch(`${LOCAL}/user/updateuser/${id}`, {
       method: "PUT",
@@ -132,6 +137,7 @@ export const stats= async () => {
   headers.append("Accept", "application/json");
   headers.append("Content-Type", "application/json");
   headers.append("authorization", `Bearer: ${token}`);
+ 
   try {
     let statsperf = await fetch(`${LOCAL}/stats`, {
       method: "POST",
@@ -194,6 +200,25 @@ export const updateemail = async (id: any, update: any) => {
       body: JSON.stringify(update),
     });
     return updateuser.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//manual add performance
+export const manualsignup = async (perf:any) => {
+  const headers = new Headers();
+  const { token } = JSON.parse(localStorage.getItem("usersign") || '{}');
+  headers.append("Accept", "application/json");
+  headers.append("Content-Type", "application/json");
+  headers.append("authorization", `Bearer: ${token}`);
+  try {
+    let addperf = await fetch(`${LOCAL}/manualupload`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(perf),
+    });
+    return addperf.json();
   } catch (err) {
     console.log(err);
   }

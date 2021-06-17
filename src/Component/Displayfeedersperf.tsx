@@ -73,18 +73,20 @@ const Displayfeedersperf = ({ info, modalIsOpen,
           <table className="table" >
             <thead>
 
-              <th scope="col">S/N</th>
-              <th scope="col" style={intype === "TRANSFORMERS" || intype === "FEEDERS" ? { display: "block" } : { display: "none" }} >District</th>
-              <th scope="col">{intype}</th>
-               <th scope="col" style={intype === "MARKETERS"  ? { display: "block" } : { display: "none" }} >Number of Transformers</th>
-              <th scope="col" style={intype === "TRANSFORMERS" ? { display: "block" } : { display: "none" }} >FeederName</th>
-              <th scope="col" style={intype === "FEEDERS" ? { display: "block" } : { display: "none" }} >FeederCode</th>
-              <th scope="col">TotalBilledPOP</th>
-              <th scope="col">TotalPaidPOP</th>
-              <th scope="col">CC</th>
-              <th scope="col">TotalBilledAmount</th>
-              <th scope="col">TotalPaidAmount</th>
-              <th scope="col">CE</th>
+              <th>S/N</th>
+              <th style={(intype === "TRANSFORMERS" || intype === "FEEDERS") ? { display: "" } : { display: "none" }} >District</th>
+              <th  style={intype === "TRANSFORMERS" ? { display: "" } : { display: "none" }} >Feeder Name</th>
+               <th  style={intype === "FEEDERS" || intype == "TRANSFORMERS" ? { display: "" } : { display: "none" }} >Feeder Code</th>
+              <th>{intype}</th>
+              <th  style={intype === "TRANSFORMERS" ? { display: "" } : { display: "none" }} >TRANSFORMER CODE</th>
+              <th  style={intype === "MARKETERS"  ? { display: "" } : { display: "none" }} >Number of Transformers</th>
+             
+              <th>Total Billed POP</th>
+              <th>Total Paid POP</th>
+              <th>CC</th>
+              <th>Total Billed Amount</th>
+              <th>Total Paid Amount</th>
+              <th>CE</th>
 
 
 
@@ -92,23 +94,30 @@ const Displayfeedersperf = ({ info, modalIsOpen,
             </thead>
             <tbody>
               {values.filter((val) => {
-                console.log(typeof val._id);
                 if (searchterm === "") {
                   return val;
                 }
-                else if (typeof (val._id) === 'string' && val._id.toLowerCase().includes(searchterm.toLowerCase())) {
+                 else if ((typeof (val._id) === 'string' && val.district && val.feeder) && (val._id.toLowerCase().includes(searchterm.toLowerCase()) || val.district.toLowerCase().includes(searchterm.toLowerCase()) || val.feeder.toLowerCase().includes(searchterm.toLowerCase()))) {
+                  return val;
+                }
+                else if ((typeof (val._id) === 'string' && val.district) && (val._id.toLowerCase().includes(searchterm.toLowerCase()) || val.district.toLowerCase().includes(searchterm.toLowerCase()))) {
+                  return val;
+                }
+                else if (typeof (val._id) === 'string'  && val._id.toLowerCase().includes(searchterm.toLowerCase()) ) {
                   return val;
                 }
               }).slice(indexOfFirstPost, indexOfLastPost).map((u: any, i: number) => (
                 <tr key={i}>
                   <td>{indexOfFirstPost=indexOfFirstPost + 1}</td>
 
-                  <td style={intype === "TRANSFORMERS" || intype === "FEEDERS" ? { display: "block" } : { display: "none" }}>{u.district}</td>
-
-                  <td style={{color:"#3b9668",fontWeight:700}}>{u._id}</td>
-                   <td style={intype == "MARKETERS" ? { display: "block" } : { display: "none" }}>{u.totalCount}</td>
-                  <td style={intype == "TRANSFORMERS" ? { display: "block" } : { display: "none" }}>{u.feeder}</td>
-                  <td style={intype == "FEEDERS" ? { display: "block" } : { display: "none" }}>{u.feeder_code}</td>
+                  <td style={intype === "TRANSFORMERS" || intype === "FEEDERS" ? { display: "" } : { display: "none" }}>{u.district}</td>
+                  <td style={intype == "TRANSFORMERS" ? { display: "" } : { display: "none" }}>{u.feeder}</td>
+                  <td style={intype == "FEEDERS" || intype == "TRANSFORMERS" ? { display: "" } : { display: "none" }}>{u.feeder_code}</td>
+                 
+                  <td style={{ color: "#3b9668", fontWeight: 700 }}>{u._id}</td>
+                    <td style={intype == "TRANSFORMERS" ? { display: "" } : { display: "none" }}>{u.transformer_code}</td>
+                   <td style={intype == "MARKETERS" ? { display: "" } : { display: "none" }}>{u.totalCount}</td>
+                  
                   <td>{u.totalbilledpop}</td>
                   <td>{u.totalpaidpop}</td>
                   <td style={{ fontWeight: "bold" }}>

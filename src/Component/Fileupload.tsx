@@ -11,7 +11,7 @@ const FileUpload = () => {
   const [uploadPercentage, setUploadpercentage] = useState<number>(0);
   const onFileChange = (e: React.ChangeEvent<any>) => {
     
-    console.log(e.target.files[0].name);
+ 
     
     setFilename(e.target.files[0].name);
   
